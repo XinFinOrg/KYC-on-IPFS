@@ -14,9 +14,6 @@ This doc will be uploaded to private IPFS network, only those with a key can joi
 This upload will return a cryptographic hash which will be stored on the smart contract.
 This hash will henceforward act as a sole handle to that file.
 
-
-
-
 ## For Developers
 
 This repository is created for the purpose of setting up a private IPFS network.  
