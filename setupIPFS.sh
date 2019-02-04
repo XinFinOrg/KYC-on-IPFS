@@ -6,6 +6,10 @@
 # tar xvfz go-ipfs_v0.4.13_linux-amd64.tar.gz
 # sudo mv go-ipfs/ipfs /usr/local/bin/ipfs
 # 
+# Uncomment below to remove tar file
+# 
+# rm -R go-ipfs_v0.4.13_linux-amd64.tar.gz
+# sudo mv ./go-ipfs $home
 
 for i in `seq 1 $1`;
 do 
@@ -26,9 +30,24 @@ do
     IPFS_PATH=~/.ipfs$i ipfs bootstrap rm --all
 done
 
-# After this step do the following : 
-# 1 . Add the hash address of your bootnode to each of the nodes including the bootnode.
-#  >> IPFS_PATH=~/.ipfsNodeNumber ipfs bootstrap add /ip4/127.0.0.1/tcp/4001/ipfs/NodePeerIdentity
-# 2 . Manually set up the ports of each node (ip4 & ip6) & replace the above port with them.
 
+if [ ! -d "./nodes" ]; then
+    echo "Creating file "
+    mkdir nodes 
+fi
+
+cd nodes
+
+for i in `seq 1 $1`;
+do
+    touch node$i.sh
+    echo " export LIBP2P_FORCE_PNET=1 && IPFS_PATH=~/.ipfs$i ipfs daemon" > node$i.sh
+done
+
+for i in `seq 1 $1`;
+do
+    sed -i -e "s/4001/400$i/;s/5001/500$i/;s/8080/808$i/g" ~/.ipfs$i/config
+done
+
+printf "Done :)\nNow run the run.sh file.\n"
 
