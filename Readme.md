@@ -24,10 +24,20 @@ A simple node app is provided as a compliment to test out the the file upload fe
 ### Setting up the network
 
 To setup the network follow the steps below :  
+1. Install IPFS and GoLang using.
+        
+        bash ./install_IPFS.sh
 
-1. Open file setupIPFS.sh uncomment the code wherever it applies to you
-2. In the root of the codebase directory, run the command <code> bash setupIPFS.sh n</code>, where n is the number of nodesyou want.
+2. Setup IPFS Deamon
+        
+        bash ./setupIPFS.sh n
+
+In the root of the codebase directory, run the command <code> bash setupIPFS.sh n</code>, where n is the number of nodesyou want.
 3. If the execution is successful, run the run.sh file.  
+        
+        bash ./run.sh
+
+
 
 ### Setting up endpoint
  1. Do ```npm install```  
